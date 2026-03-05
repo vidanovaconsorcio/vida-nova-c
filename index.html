@@ -11,12 +11,13 @@
         .header { background: var(--dark); padding: 45px 10px; text-align: center; border-bottom: 2px solid var(--gold); }
         .header h1 { color: var(--gold); font-weight: 900; letter-spacing: 7px; margin: 0; font-size: 2.6rem; text-transform: uppercase; }
         .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
-        .grid-bens { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 30px; }
+        .grid-bens { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 30px; }
         .card-bem { background: var(--card-bg); border: 1px solid #222; border-radius: 10px; cursor: pointer; transition: 0.3s; overflow: hidden; text-align: center; display: flex; flex-direction: column; height: 195px; }
-        .card-bem img { width: 100%; height: 100px; object-fit: cover; border-bottom: 1px solid #222; }
+        .card-bem img { width: 100%; height: 100px; object-fit: cover; border-bottom: 1px solid #222; pointer-events: none; }
         .card-info { padding: 10px 5px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .card-info b { display: block; font-size: 0.9rem; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
-        .card-bem.active { border: 2px solid var(--gold); background: #1a1a1a; }
+        .card-info i { display: block; font-size: 0.65rem; color: #aaa; font-style: normal; line-height: 1.3; font-weight: 400; }
+        .card-bem.active { border: 2px solid var(--gold); transform: translateY(-3px); background: #1a1a1a; }
         .main-card { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #222; margin-bottom: 25px; }
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; font-size: 0.8rem; color: var(--gold); margin-bottom: 8px; text-transform: uppercase; font-weight: bold; }
@@ -26,11 +27,13 @@
         .comparison { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .res-box { background: #0a0a0a; padding: 25px; border-radius: 12px; border: 1px solid #222; text-align: center; }
         .res-box.vnc { border-color: var(--gold); background: #0d0d0d; }
-        .price { font-size: 2rem; font-weight: 900; margin: 10px 0; }
+        .res-box h3 { font-size: 0.75rem; color: #777; text-transform: uppercase; margin: 0 0 10px 0; }
+        .price { font-size: 2.2rem; font-weight: 900; margin: 5px 0; }
         .vnc-price { color: var(--gold); }
+        .eco-tag { color: var(--gold); font-size: 0.9rem; font-weight: bold; margin-top: 10px; display: block; border-top: 1px solid #222; padding-top: 10px; }
         .footer-cta { background: var(--gold); padding: 30px; border-radius: 15px; text-align: center; color: #000; margin-top: 30px; }
         .footer-cta input { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 8px; border: none; box-sizing: border-box; font-size: 1rem; }
-        .btn-final { width: 100%; padding: 20px; background: #000; color: var(--gold); border: none; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+        .btn-final { width: 100%; padding: 20px; background: #000; color: var(--gold); border: none; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.1rem; }
     </style>
 </head>
 <body>
@@ -39,15 +42,16 @@
 
 <div class="container">
     <div class="grid-bens">
-        <div class="card-bem active" onclick="setCat(this, 'Motos', 0.19, 0.75)"><img src="https://images.pexels.com/photos/1413412/pexels-photo-1413412.jpeg?auto=compress&w=400"><div class="card-info"><b>Motos</b></div></div>
-        <div class="card-bem" onclick="setCat(this, 'Carros', 0.21, 0.78)"><img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&w=400"><div class="card-info"><b>Carros</b></div></div>
-        <div class="card-bem" onclick="setCat(this, 'Pesados', 0.25, 0.95)"><img src="https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&w=400"><div class="card-info"><b>Pesados</b></div></div>
-        <div class="card-bem" onclick="setCat(this, 'Imóveis', 0.24, 0.90)"><img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&w=400"><div class="card-info"><b>Imóveis</b></div></div>
+        <div class="card-bem active" onclick="setCat(this, 'Motos', 0.19, 0.75)"><img src="https://images.pexels.com/photos/1413412/pexels-photo-1413412.jpeg?auto=compress&w=400"><div class="card-info"><b>Motos</b><i>Novas e Usadas</i></div></div>
+        <div class="card-bem" onclick="setCat(this, 'Carros', 0.21, 0.78)"><img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&w=400"><div class="card-info"><b>Carros</b><i>Carros e Caminhonetes</i></div></div>
+        <div class="card-bem" onclick="setCat(this, 'Pesados', 0.25, 0.95)"><img src="https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&w=400"><div class="card-info"><b>Pesados</b><i>Tratores e Caminhões</i></div></div>
+        <div class="card-bem" onclick="setCat(this, 'Serviços', 0.22, 0.70)"><img src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&w=400"><div class="card-info"><b>Serviços</b><i>Construção e Estética</i></div></div>
+        <div class="card-bem" onclick="setCat(this, 'Imóveis', 0.24, 0.90)"><img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&w=400"><div class="card-info"><b>Imóveis</b><i>Casas e Terrenos</i></div></div>
     </div>
 
     <div class="main-card">
         <div class="input-group">
-            <label>Valor do Bem</label>
+            <label>Valor do Bem (Crédito)</label>
             <div class="cur-input"><input type="number" id="vTotal" value="100000" oninput="calc()"></div>
         </div>
         <div class="input-group">
@@ -56,24 +60,27 @@
         </div>
         <div class="input-group">
             <label>Prazo: <span id="txtPrazo" style="color:var(--gold)">48</span> Meses</label>
-            <input type="range" id="prazo" min="12" max="180" value="48" style="width: 100%; accent-color: var(--gold);" oninput="calc()">
+            <input type="range" id="prazo" min="12" max="240" value="48" style="width: 100%; accent-color: var(--gold);" oninput="calc()">
         </div>
     </div>
 
     <div class="comparison">
         <div class="res-box">
-            <h3 style="font-size: 0.8rem; color: #777;">BANCO COMUM</h3>
+            <h3>BANCO COMUM</h3>
             <div class="price" id="resBanco" style="color:#ff4d4d">R$ 0,00</div>
+            <small style="color:#666">Estimativa com juros bancários</small>
         </div>
         <div class="res-box vnc">
-            <h3 style="font-size: 0.8rem; color: var(--gold);">PLANO VIDA NOVA</h3>
+            <h3>PLANO VIDA NOVA</h3>
             <div class="price vnc-price" id="resVNC">R$ 0,00</div>
+            <span class="eco-tag" id="economia">Economia Estimada: R$ 0,00</span>
         </div>
     </div>
 
     <div class="footer-cta">
-        <input type="text" id="nomeUser" placeholder="Seu Nome">
-        <input type="tel" id="telUser" placeholder="Seu WhatsApp">
+        <h3 style="margin:0 0 20px 0; font-size: 1.1rem; text-transform: uppercase;">Agendar Atendimento</h3>
+        <input type="text" id="nomeUser" placeholder="Seu Nome Completo">
+        <input type="tel" id="telUser" placeholder="Seu WhatsApp com DDD">
         <button class="btn-final" onclick="enviar()">Falar com consultor agora</button>
     </div>
 </div>
@@ -107,8 +114,29 @@
 
         document.getElementById('resVNC').innerText = format(pVNC);
         document.getElementById('resBanco').innerText = format(pBanc);
+        
+        let economia = (pBanc * p) - (pVNC * p);
+        document.getElementById('economia').innerText = "Economia Estimada: " + format(economia);
     }
 
     function enviar() {
         let n = document.getElementById('nomeUser').value;
         let t = document.getElementById('telUser').value;
+        if(!n || !t) { alert("Por favor, preencha seu nome e WhatsApp!"); return; }
+
+        const params = new URLSearchParams(window.location.search);
+        let numVendedor = params.get('v') || '5563920019173';
+
+        let vt = format(parseFloat(document.getElementById('vTotal').value) || 0);
+        let pV = document.getElementById('resVNC').innerText;
+        let prazo = document.getElementById('prazo').value;
+
+        let msg = `Olá! Sou o(a) ${n}. Fiz uma simulação na *VIDA NOVA*.%0A%0A*Categoria:* ${_cat}%0A*Crédito:* ${vt}%0A*Plano VIDA NOVA:* ${prazo}x de ${pV}%0A%0A*Gostaria de agendar um atendimento.*`;
+        
+        window.open(`https://wa.me/${numVendedor}?text=${msg}`);
+    }
+
+    window.onload = calc;
+</script>
+</body>
+</html>
