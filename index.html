@@ -37,7 +37,9 @@
     </style>
 </head>
 <body>
+
 <div class="header"><h1>VIDA NOVA</h1></div>
+
 <div class="container">
     <div class="grid-bens">
         <div class="card-bem active" onclick="setCat(this, 'Motos', 0.19, 0.75)"><img src="https://images.pexels.com/photos/1413412/pexels-photo-1413412.jpeg?auto=compress&w=400"><div class="card-info"><b>Motos</b><i>Novas e Usadas</i></div></div>
@@ -46,15 +48,18 @@
         <div class="card-bem" onclick="setCat(this, 'Serviços', 0.22, 0.70)"><img src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&w=400"><div class="card-info"><b>Serviços</b><i>Construção e Estética</i></div></div>
         <div class="card-bem" onclick="setCat(this, 'Imóveis', 0.24, 0.90)"><img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&w=400"><div class="card-info"><b>Imóveis</b><i>Casas e Terrenos</i></div></div>
     </div>
+
     <div class="main-card">
         <div class="input-group"><label>Valor Desejado</label><div class="cur-input"><input type="number" id="vTotal" value="100000" oninput="calc()"></div></div>
         <div class="input-group"><label>Sua Entrada</label><div class="cur-input"><input type="number" id="vEntrada" value="10000" oninput="calc()"></div></div>
         <div class="input-group"><label>Prazo: <span id="txtPrazo" style="color:var(--gold)">48</span> Meses</label><input type="range" id="prazo" min="12" max="180" value="48" style="width: 100%; accent-color: var(--gold);" oninput="calc()"></div>
     </div>
+
     <div class="comparison">
         <div class="res-box"><h3>Financiamento Comum</h3><div class="price" id="resBanco" style="color:#ff4d4d">R$ 0,00</div><small style="color:#666">Estimativa com juros bancários</small></div>
         <div class="res-box vnc"><h3>Plano VIDA NOVA</h3><div class="price vnc-price" id="resVNC">R$ 0,00</div><span class="eco-tag" id="economia">Economia Estimada: R$ 0,00</span></div>
     </div>
+
     <div class="footer-cta">
         <h3 style="margin:0 0 20px 0">Agendar atendimento</h3>
         <input type="text" id="nomeUser" placeholder="Seu Nome Completo">
@@ -62,8 +67,10 @@
         <button class="btn-final" onclick="enviar()">Falar com consultor agora</button>
     </div>
 </div>
+
 <script>
     let _cat = "Motos", _tVNC = 0.19, _tBanc = 0.75;
+
     function setCat(el, n, tv, tb) {
         document.querySelectorAll('.card-bem').forEach(c => c.classList.remove('active'));
         el.classList.add('active'); _cat = n; _tVNC = tv; _tBanc = tb;
@@ -71,7 +78,9 @@
         if(n === 'Imóveis' || n === 'Pesados') { pInput.max = 240; } else { if(pInput.value > 120) pInput.value = 120; pInput.max = 120; }
         calc();
     }
+
     function format(v) { return "R$ " + v.toLocaleString('pt-BR', {minimumFractionDigits: 2}); }
+    
     function calc() {
         let vt = parseFloat(document.getElementById('vTotal').value) || 0;
         let ve = parseFloat(document.getElementById('vEntrada').value) || 0;
@@ -84,17 +93,11 @@
         document.getElementById('resBanco').innerText = format(pBanc);
         document.getElementById('economia').innerText = "Economia Estimada: " + format((pBanc * p) - (pVNC * p));
     }
+
     function enviar() {
         let n = document.getElementById('nomeUser').value;
         let t = document.getElementById('telUser').value;
         if(!n || !t) return alert("Por favor, preencha nome e WhatsApp!");
-        let vt = format(parseFloat(document.getElementById('vTotal').value) || 0);
-        let pV = document.getElementById('resVNC').innerText;
-        let prazo = document.getElementById('prazo').value;
-        let msg = `Olá! Sou o(a) ${n}. Fiz uma simulação na *VIDA NOVA*.%0A%0A*Categoria:* ${_cat}%0A*Crédito:* ${vt}%0A*Plano VIDA NOVA:* ${prazo}x de ${pV}%0A%0A*Gostaria de agendar um atendimento.*`;
-        window.open(`https://wa.me/5563920019173?text=${msg}`);
-    }
-    window.onload = calc;
-</script>
-</body>
-</html>
+
+        const params = new URLSearchParams(window.location.search);
+        let numVendedor = params.get('v') || '55639
